@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Medidas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <label for="numero">Ingresa un número:</label>
+        <input type="number" id="numero" name="numero">
+
+        <label for="medidaOriginal">Selecciona la medida original:</label>
+        <select id="medidaOriginal">
+            <option value="metros">Metros</option>
+            <option value="centimetros">Centímetros</option>
+            <option value="milimetros">Milímetros</option>
+            <option value="hectometros">Hectómetros</option>
+            <option value="kilometros">Kilómetros</option>
+            <option value="decametros">Decámetros</option>
+            <option value="decimetros">Decímetros</option>
+        </select>
+
+        <label for="medidaDestino">Selecciona la medida a transformar:</label>
+        <select id="medidaDestino">
+            <option value="metros">Metros</option>
+            <option value="centimetros">Centímetros</option>
+            <option value="milimetros">Milímetros</option>
+            <option value="hectometros">Hectómetros</option>
+            <option value="kilometros">Kilómetros</option>
+            <option value="decametros">Decámetros</option>
+            <option value="decimetros">Decímetros</option>
+        </select>
+
+        <button onclick="calcular()">Transformar</button>
+
+        <label>Resultado:</label>
+        <input type="number" id="resultado" readonly>
+
+    </div>
+
+    <script>
+        function calcular() {
+            var numero = parseFloat(document.getElementById('numero').value) || 0;
+            var medidaOriginal = document.getElementById('medidaOriginal').value;
+            var medidaDestino = document.getElementById('medidaDestino').value;
+            
+            var resultado = 0;
+
+            switch (medidaOriginal) {
+                case 'metros':
+                    switch (medidaDestino) {
+                        case 'centimetros':
+                            resultado = numero * 100;
+                            break;
+                        case 'milimetros':
+                            resultado = numero * 1000;
+                            break;
+                        case 'hectometros':
+                            resultado = numero / 100;
+                            break;
+                        case 'kilometros':
+                            resultado = numero / 1000;
+                            break;
+                        case 'decametros':
+                            resultado = numero / 10;
+                            break;
+                        case 'decimetros':
+                            resultado = numero * 10;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                case 'centimetros':
+                    switch (medidaDestino) {
+                        case 'metros':
+                            resultado = numero / 100;
+                            break;
+                        case 'milimetros':
+                            resultado = numero * 10;
+                            break;
+                        case 'hectometros':
+                            resultado = numero / 10000;
+                            break;
+                        case 'kilometros':
+                            resultado = numero / 100000;
+                            break;
+                        case 'decametros':
+                            resultado = numero / 1000;
+                            break;
+                        case 'decimetros':
+                            resultado = numero * 100;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                case 'milimetros':
+                    switch (medidaDestino) {
+                        case 'metros':
+                            resultado = numero / 1000;
+                            break;
+                        case 'centimetros':
+                            resultado = numero / 10;
+                            break;
+                        case 'hectometros':
+                            resultado = numero / 100000;
+                            break;
+                        case 'kilometros':
+                            resultado = numero / 1000000;
+                            break;
+                        case 'decametros':
+                            resultado = numero / 10000;
+                            break;
+                        case 'decimetros':
+                            resultado = numero * 100;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                case 'hectometros':
+                    switch (medidaDestino) {
+                        case 'metros':
+                            resultado = numero * 100;
+                            break;
+                        case 'centimetros':
+                            resultado = numero * 10000;
+                            break;
+                        case 'milimetros':
+                            resultado = numero * 100000;
+                            break;
+                        case 'kilometros':
+                            resultado = numero / 10;
+                            break;
+                        case 'decametros':
+                            resultado = numero * 10;
+                            break;
+                        case 'decimetros':
+                            resultado = numero * 1000;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                case 'kilometros':
+                    switch (medidaDestino) {
+                        case 'metros':
+                            resultado = numero * 1000;
+                            break;
+                        case 'centimetros':
+                            resultado = numero * 100000;
+                            break;
+                        case 'milimetros':
+                            resultado = numero * 1000000;
+                            break;
+                        case 'hectometros':
+                            resultado = numero * 10;
+                            break;
+                        case 'decametros':
+                            resultado = numero * 10000;
+                            break;
+                        case 'decimetros':
+                            resultado = numero * 100000;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                case 'decametros':
+                    switch (medidaDestino) {
+                        case 'metros':
+                            resultado = numero * 10;
+                            break;
+                        case 'centimetros':
+                            resultado = numero * 1000;
+                            break;
+                        case 'milimetros':
+                            resultado = numero * 10000;
+                            break;
+                        case 'hectometros':
+                            resultado = numero / 10;
+                            break;
+                        case 'kilometros':
+                            resultado = numero / 10000;
+                            break;
+                        case 'decimetros':
+                            resultado = numero * 100;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                case 'decimetros':
+                    switch (medidaDestino) {
+                        case 'metros':
+                            resultado = numero / 10;
+                            break;
+                        case 'centimetros':
+                            resultado = numero * 10;
+                            break;
+                        case 'milimetros':
+                            resultado = numero * 100;
+                            break;
+                        case 'hectometros':
+                            resultado = numero / 1000;
+                            break;
+                        case 'kilometros':
+                            resultado = numero / 100000;
+                            break;
+                        case 'decametros':
+                            resultado = numero / 100;
+                            break;
+                        default:
+                            resultado = numero;
+                    }
+                    break;
+
+                default:
+                    resultado = numero;
+            }
+
+            document.getElementById('resultado').value = resultado;
+        }
+    </script>
+
+</body>
+</html>
